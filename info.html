@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="Info" content="width=device-width, initial-scale=1.0" />
+  <title>Fullscreen Autoplay Video</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: black;
+    }
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+
+    <h1 style="color: white; text-align: center; font-family: 'Courier New', Courier, monospace;">Click anywhere</h1>
+
+    <video id="bg-video" autoplay muted playsinline>
+    <source src="Funny.mp4" type="video/mp4" />
+    Your browser does not support HTML5 video.
+  </video>
+
+  <script>
+    const video = document.getElementById('bg-video');
+
+    function goFullscreen() {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+        video.muted = false;
+        video.volume = 1.0;
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+        video.muted = false;
+        video.volume = 1.0;
+      } else if (video.msRequestFullscreen) {
+        video.msRequestFullscreen();
+        video.muted = false;
+        video.volume = 1.0;
+      }
+    }
+
+    window.addEventListener('click', () => {
+      goFullscreen();
+      video.play();
+    });
+  </script>
+</body>
+</html>
